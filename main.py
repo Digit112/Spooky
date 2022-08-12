@@ -16,6 +16,7 @@ from sprite import Sprite
 from character import Character
 from tiles import TileMap
 from enemy import Enemy, Enemies
+from menu import MainMenu
 
 en = Enemies()
 
@@ -24,7 +25,7 @@ level = TileMap()
 level.draw_tiles()
 
 ch = Character()
-
+menu = MainMenu()
 
 center = (ch.rect.centerx,ch.rect.centery)
 radius = 100
@@ -44,6 +45,7 @@ while 1:
 			pg.quit()
 			sys.exit()
 
+	menu.draw(screen)
 
 	center = (ch.rect.centerx,ch.rect.centery)
 	m_x, m_y = pg.mouse.get_pos()

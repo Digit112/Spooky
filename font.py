@@ -25,3 +25,5 @@ class Text:
 
 		screen.blit(self.image, self.rect)
 
+
+
