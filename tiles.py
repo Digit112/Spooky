@@ -1,6 +1,10 @@
 
 import pygame as pg
 from sprite import Sprite
+
+from mazegen import *
+
+#home_map = gen_maze_map(12, 9, 1, 1)
 home_map = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 			[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 			[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
@@ -47,6 +51,7 @@ class TileMap:
 		##- x, y : determines the position and location of each tile in map
 		x = 0
 		y = 0
+		
 		##- For each corresponding integer in array map, create the corresponding sprite, and pass the x,y position
 		for i in range(len(home_map)):
 			for j in range(len(home_map[i])):
@@ -54,13 +59,12 @@ class TileMap:
 					self.tiles.append(Tile(Sprite("bg"), x, y))
 				if home_map[i][j] == 0:
 					self.tiles.append(Tile(Sprite("wall"), x, y))
+				
 				##- Increment x, y by width and height, then reset x to zero once j loop completes
 				x += self.tiles[-1].w
 			y += self.tiles[-1].h
 			x = 0
 
-
 	def draw_tiles(self):
-
 		for i in self.tiles:
 			self.surf.blit(i.image, i.rect)

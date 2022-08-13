@@ -11,7 +11,6 @@ screen = pg.display.set_mode(size)
 
 clock = pg.time.Clock()
 
-
 from sprite import Sprite
 from character import Character
 from tiles import TileMap
