@@ -5,19 +5,10 @@ from sprite import Sprite
 from mazegen import *
 
 home_map = gen_maze_map(5, 9, 1, 1)
-# home_map = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-			# [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
 
 class Tile():
 	##- Expects: Sprite(image), x pos, y pos
-	def __init__(self, image, x, y):
+	def __init__(self, image, x, y, layer=0):
 
 		##- Type is always the name of the sprite
 		self.type = image.type
@@ -27,6 +18,9 @@ class Tile():
 		self.w, self.h = self.image.get_width(), self.image.get_height()
 		##- Sprite rect/ position in window
 		self.rect = self.image.get_rect(topleft=(x,y))
+		
+		# Layer of this tile
+		self.layer = layer
 		
 ##- Actual tile map which has evolved into a class for more than just the tile map
 
@@ -56,9 +50,9 @@ class TileMap:
 		for i in range(len(home_map)):
 			for j in range(len(home_map[i])):
 				if home_map[i][j] == -1:
-					self.tiles.append(Tile(Sprite("bg"), x, y))
+					self.tiles.append(Tile(Sprite("bg"), x, y, 0))
 				if home_map[i][j] == 0:
-					self.tiles.append(Tile(Sprite("wall"), x, y))
+					self.tiles.append(Tile(Sprite("wall"), x, y, 1))
 				
 				##- Increment x, y by width and height, then reset x to zero once j loop completes
 				x += self.tiles[-1].w
@@ -67,4 +61,5 @@ class TileMap:
 
 	def draw_tiles(self):
 		for i in self.tiles:
-			self.surf.blit(i.image, i.rect)
+			if i.layer == layer or layer == None:
+				self.surf.blit(i.image, i.rect)

@@ -21,7 +21,7 @@ en = Enemies()
 
 
 level = TileMap()
-level.draw_tiles()
+level.draw_tiles(-1)
 
 ch = Character()
 menu = MainMenu()
@@ -83,19 +83,8 @@ while 1:
 	
 	ss = ch.blitRotate(screen,spr.sprite,(ch.rect.centerx,ch.rect.centery), (190,-20), angle)
 
-
-	if ch.dir in ["left","down"]:
-
-		#ch.light(screen,angle)
-		ch.draw_aura(screen)
-		ch.draw(screen)
-
-	else:
-
-		#ch.light(screen,angle)
-		ch.draw_aura(screen)
-		ch.draw(screen)
-
+	ch.draw_aura(screen)
+	ch.draw(screen)
 
 	spr.image = ss[0]
 	spr.rect = ss[1]
