@@ -13,7 +13,7 @@ class Sprite(pg.sprite.Sprite):
 
 		self.sprite_loc =  {
 			"bg": (720,0,219,219),
-			"wall": (510,80,50,47),
+			"wall": (975,0,219,219),
 			"ch_right":(210,220,110,190),
 			"ch_down":(10,220,110,190),
 			"ch_left":(10,10,110,190),
