@@ -13,6 +13,8 @@ class MainMenu:
 
 		self.rect = self.image.get_rect(topleft=(0,0))
 
+		self.started = False
+		
 		self.update()
 
 	def update(self):

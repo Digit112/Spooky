@@ -34,6 +34,7 @@ spr = Sprite("ch_arm", 2 , down=True)
 dt = 0
 aa = 0
 
+started = False
 
 while 1:
 
@@ -105,8 +106,10 @@ while 1:
 	en.update(ch.rect,spr)
 	en.draw(screen)
 	# pg.draw.polygon(screen, (10,0,0), spr.mask.outline(), 20)
-	#menu.draw(screen)
-	#menu.mouse_event((m_x,m_y))
+	menu.draw(screen)
+	menu.mouse_event((m_x,m_y))
 
+	started = menu.started
+	
 	pg.display.flip()
 	dt = clock.tick(60)/1000.0
