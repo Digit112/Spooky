@@ -15,6 +15,7 @@ from sprite import Sprite
 from character import Character
 from tiles import TileMap
 from enemy import Enemy, Enemies
+from menu import MainMenu
 
 en = Enemies()
 
@@ -23,7 +24,7 @@ level = TileMap()
 level.draw_tiles()
 
 ch = Character()
-
+menu = MainMenu()
 
 center = (ch.rect.centerx,ch.rect.centery)
 radius = 100
@@ -95,6 +96,7 @@ while 1:
 		ch.draw_aura(screen)
 		ch.draw(screen)
 
+
 	spr.image = ss[0]
 	spr.rect = ss[1]
 	spr.mask = pg.mask.from_surface(spr.image, 0)
@@ -103,6 +105,8 @@ while 1:
 	en.update(ch.rect,spr)
 	en.draw(screen)
 	# pg.draw.polygon(screen, (10,0,0), spr.mask.outline(), 20)
+	menu.draw(screen)
+	menu.mouse_event((m_x,m_y))
 
 	pg.display.flip()
 	dt = clock.tick(60)/1000.0
