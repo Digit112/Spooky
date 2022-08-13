@@ -24,8 +24,8 @@ class Character(pg.sprite.Sprite):
 		self.image = self.sprite.sprite
 		self.rect = self.sprite.rect
 
-		self.rect.x = 400
-		self.rect.y = 400
+		self.rect.x = 1920//2
+		self.rect.y = 1080//2
 
 
 		self.dt = 0
