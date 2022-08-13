@@ -2,13 +2,17 @@
 import pygame as pg
 from sprite import Sprite
 
-from mazegen import *
 
+<<<<<<< HEAD
 home_map = gen_maze_map(5, 9, 1, 1)
+=======
+
+>>>>>>> 8be3fc251b585bf24f73b1bb246240f89ed78b61
 
 class Tile():
 	##- Expects: Sprite(image), x pos, y pos
 	def __init__(self, image, x, y, layer=0):
+
 
 		##- Type is always the name of the sprite
 		self.type = image.type
@@ -26,7 +30,10 @@ class Tile():
 
 class TileMap:
 
-	def __init__(self):
+	def __init__(self, h_map):
+
+		self.home_map = h_map
+
 		##- Tiles is all Tile() objects pushed into this array from the make_tile function
 		##- Matrix mirrors this with pg.Rect for the paint
 		self.tiles = []
@@ -35,7 +42,7 @@ class TileMap:
 		##- Delta time
 		self.dt = 0
 		##- Surface to be drawn later, in level()
-		self.surf = pg.Surface((1920,1080))
+		self.surf = pg.Surface((1920,1080), pg.SRCALPHA, 32)
 		##- list of obstacles to draw in level(), and the rate of which they can be drawn
 		##- Array full of coordinates to be used for paint later
 		self.make_tile()
@@ -47,19 +54,24 @@ class TileMap:
 		y = 0
 		
 		##- For each corresponding integer in array map, create the corresponding sprite, and pass the x,y position
-		for i in range(len(home_map)):
-			for j in range(len(home_map[i])):
-				if home_map[i][j] == -1:
-					self.tiles.append(Tile(Sprite("bg"), x, y, 0))
-				if home_map[i][j] == 0:
-					self.tiles.append(Tile(Sprite("wall"), x, y, 1))
+		for i in range(len(self.home_map)):
+			for j in range(len(self.home_map[i])):
+				if self.home_map[i][j] == -2:
+					self.tiles.append(Tile(Sprite("bg"), x, y))
+				if self.home_map[i][j] == 0:
+					self.tiles.append(Tile(Sprite("wall"), x, y))
 				
 				##- Increment x, y by width and height, then reset x to zero once j loop completes
 				x += self.tiles[-1].w
 			y += self.tiles[-1].h
 			x = 0
-
+		self.draw_tiles()
 	def draw_tiles(self):
 		for i in self.tiles:
+<<<<<<< HEAD
 			if i.layer == layer or layer == None:
 				self.surf.blit(i.image, i.rect)
+=======
+			self.surf.blit(i.image, i.rect)
+
+>>>>>>> 8be3fc251b585bf24f73b1bb246240f89ed78b61
