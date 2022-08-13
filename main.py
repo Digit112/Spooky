@@ -96,7 +96,7 @@ while 1:
 		#ch.light(screen,angle)
 		ch.draw_aura(screen)
 		ch.draw(screen)
-	
+
 
 	spr.image = ss[0]
 	spr.rect = ss[1]
@@ -107,6 +107,7 @@ while 1:
 	en.draw(screen)
 	# pg.draw.polygon(screen, (10,0,0), spr.mask.outline(), 20)
 	menu.draw(screen)
+	menu.mouse_event((m_x,m_y))
 
 	pg.display.flip()
 	dt = clock.tick(60)/1000.0
