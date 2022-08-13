@@ -3,12 +3,6 @@ import pygame as pg
 from sprite import Sprite
 
 
-<<<<<<< HEAD
-home_map = gen_maze_map(5, 9, 1, 1)
-=======
-
->>>>>>> 8be3fc251b585bf24f73b1bb246240f89ed78b61
-
 class Tile():
 	##- Expects: Sprite(image), x pos, y pos
 	def __init__(self, image, x, y, layer=0):
@@ -68,10 +62,5 @@ class TileMap:
 		self.draw_tiles()
 	def draw_tiles(self):
 		for i in self.tiles:
-<<<<<<< HEAD
-			if i.layer == layer or layer == None:
-				self.surf.blit(i.image, i.rect)
-=======
 			self.surf.blit(i.image, i.rect)
 
->>>>>>> 8be3fc251b585bf24f73b1bb246240f89ed78b61

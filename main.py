@@ -94,9 +94,6 @@ while 1:
 	ss = ch.blitRotate(screen,spr.sprite,(ch.rect.centerx,ch.rect.centery), (190,-20), angle)
 
 	ch.draw_aura(screen)
-<<<<<<< HEAD
-	ch.draw(screen)
-=======
 	screen.blit(maze.surf, (0,0))
 
 	if ch.dir in ["left","down"]:
@@ -105,7 +102,6 @@ while 1:
 	else:
 		#ch.light(screen,angle)
 		ch.draw(screen)
->>>>>>> 8be3fc251b585bf24f73b1bb246240f89ed78b61
 
 	spr.image = ss[0]
 	spr.rect = ss[1]
