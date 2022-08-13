@@ -1,6 +1,7 @@
 import pygame as pg
 import sys,os
 import math
+from mazegen import *
 
 
 size = width, height = (1920,1080)
@@ -19,9 +20,18 @@ from menu import MainMenu
 
 en = Enemies()
 
+home_map = [[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+			[-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2]]
 
-level = TileMap()
-level.draw_tiles()
+maze = TileMap(gen_maze_map(5, 9, 1, 1))
+background = TileMap(home_map)
 
 ch = Character()
 menu = MainMenu()
@@ -34,7 +44,6 @@ spr = Sprite("ch_arm", 2 , down=True)
 dt = 0
 aa = 0
 
-started = False
 
 while 1:
 
@@ -70,7 +79,7 @@ while 1:
 
 
 	screen.fill(0)
-	screen.blit(level.surf,(0,0))
+	screen.blit(background.surf,(0,0))
 
 	angle = -(math.degrees(math.atan2(center[1] - sc[1], center[0] - sc[0] )) % 360 + 90)
 
@@ -84,19 +93,15 @@ while 1:
 	
 	ss = ch.blitRotate(screen,spr.sprite,(ch.rect.centerx,ch.rect.centery), (190,-20), angle)
 
+	ch.draw_aura(screen)
+	screen.blit(maze.surf, (0,0))
 
 	if ch.dir in ["left","down"]:
-
 		#ch.light(screen,angle)
-		ch.draw_aura(screen)
 		ch.draw(screen)
-
 	else:
-
 		#ch.light(screen,angle)
-		ch.draw_aura(screen)
 		ch.draw(screen)
-
 
 	spr.image = ss[0]
 	spr.rect = ss[1]
@@ -106,10 +111,8 @@ while 1:
 	en.update(ch.rect,spr)
 	en.draw(screen)
 	# pg.draw.polygon(screen, (10,0,0), spr.mask.outline(), 20)
-	menu.draw(screen)
-	menu.mouse_event((m_x,m_y))
+	#menu.draw(screen)
+	#menu.mouse_event((m_x,m_y))
 
-	started = menu.started
-	
 	pg.display.flip()
 	dt = clock.tick(60)/1000.0
